@@ -1,0 +1,191 @@
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="game.css">
+	<script>
+		var start = true;
+
+		var previous = 0;
+		console.log(start);
+
+
+		function rollDice() {
+		//    const diceSide1 = document.createElement("img1");
+		 //   const diceSide2 = document.createElement("img2");
+            const diceSide1 = document.getElementById('dice-side-1');
+            const diceSide2 = document.getElementById('dice-side-2');
+			const status = document.getElementById('status');
+			const score = document.getElementById('score');
+			const prev = document.getElementById('previous');
+			const side1 = Math.floor(Math.random() * 6) + 1;
+			const side2 = Math.floor(Math.random() * 6) + 1;
+
+			if(side1===1)
+			{
+                const diceSide1 = document.getElementById('dice-side-1').src="1.jpg";
+			}
+
+            if(side1===2)
+            {
+                const diceSide1 = document.getElementById('dice-side-1').src="2.png";
+            }
+
+            if(side1===3)
+            {
+                const diceSide1 = document.getElementById('dice-side-1').src="3.jpg";
+            }
+
+            if(side1===4)
+            {
+                const diceSide1 = document.getElementById('dice-side-1').src="4.jpg";
+            }
+
+            if(side1===5)
+            {
+                const diceSide1 = document.getElementById('dice-side-1').src="5.png";
+            }
+            if(side1===6)
+            {
+                const diceSide1 = document.getElementById('dice-side-1').src="6.jpg";
+            }
+
+
+
+
+
+            if(side2===1)
+            {
+                const diceSide1 = document.getElementById('dice-side-2').src="1.jpg";
+            }
+
+            if(side2===2)
+            {
+                const diceSide1 = document.getElementById('dice-side-2').src="2.png";
+            }
+
+            if(side2===3)
+            {
+                const diceSide1 = document.getElementById('dice-side-2').src="3.jpg";
+            }
+
+            if(side2===4)
+            {
+                const diceSide1 = document.getElementById('dice-side-2').src="4.jpg";
+            }
+
+            if(side2===5)
+            {
+                const diceSide1 = document.getElementById('dice-side-2').src="5.png";
+            }
+            if(side2===6)
+            {
+                const diceSide1 = document.getElementById('dice-side-2').src="6.jpg";
+            }
+
+
+
+
+			const diceTotal = side1 + side2;
+
+			if (!start) {
+				diceSide1.innerHTML = side1;
+				diceSide2.innerHTML = side2;
+				status.innerHTML = "";
+
+				score.innerHTML = "";
+				prev.innerHTML = "";
+
+					if (diceTotal === 7) {
+						status.innerHTML += 'You Rolled 7 Game Over';
+						prev.innerHTML +='Previous Score: ' + previous;
+						previous = 0;
+						score.innerHTML = "Loser";
+						start = true;
+					} else if (diceTotal === 11) {
+						prev.innerHTML +='Previous Score: ' + previous;
+						status.innerHTML += 'You rolled 11 Game Over';
+						previous = 0;
+						score.innerHTML = "Loser";
+						start = true;
+
+					} else if (diceTotal === 2) {
+						status.innerHTML += 'You rolled 11 Game Over';
+						score.innerHTML = "Loser";
+						prev.innerHTML +='Previous Score: ' + previous;
+						previous = 0;
+						start = true;
+						
+					} else if(previous === diceTotal) {
+						status.innerHTML += 'You Win You Rolled '+diceTotal;
+						prev.innerHTML +='Previous Score: ' + previous;
+						previous = 0;
+						score.innerHTML = "Winner";
+						start =  true;
+					}
+					else {
+
+						score.innerHTML += 'Score: ' + diceTotal;
+						prev.innerHTML +='Previous Score: ' + previous;
+						status.innerHTML += 'You rolled ' + side1 + ' and ' + side2 + '.';
+						previous = diceTotal;
+					}
+
+
+			} else {
+				diceSide1.innerHTML = side1;
+				diceSide2.innerHTML = side2;
+				status.innerHTML = "";
+				score.innerHTML = "";
+				prev.innerHTML = "";
+				if (diceTotal === 7 || diceTotal === 11) {
+					status.innerHTML += 'You Win You Rolled '+diceTotal;
+					prev.innerHTML +='Previous Score: ' + previous;
+					previous = 0;
+					score.innerHTML = "Winner";
+					start =  true;
+				} else if (diceTotal === 2 || diceTotal === 3 || diceTotal === 12) {
+					status.innerHTML += 'You Lose You Rolled ' +diceTotal;
+					prev.innerHTML +='Previous Score: ' + previous;
+					previous = 0;
+					score.innerHTML = "Loser";
+					start = true;
+				} else {
+						status.innerHTML += 'You rolled ' + side1 + ' and ' + side2 + '.';
+						score.innerHTML += 'Score: ' + diceTotal;
+						prev.innerHTML += 'Previous Score: ' + previous ;
+						previous = diceTotal;
+						start = false;
+
+				}
+				
+			}
+		}
+	</script>
+	<title></title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="column">
+			<h2 id="score">Score: 0</h2>
+			<h2 id="previous">Previous Score: 0</h2>
+		</div>
+
+		<div class="column">
+			<img id="dice-side-1" class="dice"></img>
+			<img id="dice-side-2" class="dice"></img>
+		</div>
+		<div class="column">
+			<button type="button" class="dice-roll" onclick="rollDice()">roll dice</button>
+			<h2 id="status"></h2>
+		</div>
+	</div>
+	
+</body>
+
+</html>
